@@ -25,18 +25,18 @@ public class FilmActorController {
     }
 
     @GetMapping("/filmId/{filmId}")
-    public ResponseEntity<List<FilmActor>> getFilmActorByFilmId(@PathVariable Integer filmId, @PathVariable Integer actorId){
+    public ResponseEntity<List<FilmActor>> getFilmActorByFilmId(@PathVariable Integer filmId){
 
         return new ResponseEntity<>(filmActorService.getFilmActorsByFilmId(filmId), HttpStatus.FOUND);
     }
 
     @GetMapping("/actorId/{actorId}")
-    public ResponseEntity<List<FilmActor>> getFilmActorByActorId(@PathVariable Integer filmId, @PathVariable Integer actorId){
+    public ResponseEntity<List<FilmActor>> getFilmActorByActorId( @PathVariable Integer actorId){
         return new ResponseEntity<>(filmActorService.getFilmActorsByActorId(actorId), HttpStatus.FOUND);
     }
 
     @GetMapping
-    public ResponseEntity<List<FilmActor>> getFilmActorAll(@PathVariable Integer filmId, @PathVariable Integer actorId){
+    public ResponseEntity<List<FilmActor>> getFilmActorAll(){
         return new ResponseEntity<>(filmActorService.getFilmActorsAll(), HttpStatus.FOUND);
     }
 

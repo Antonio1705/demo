@@ -20,7 +20,7 @@ public class FilmActorService {
     public List<FilmActor> getFilmActorsByFilmId(Integer filmId){
         FilmActorId filmActorId = new FilmActorId();
         filmActorId.setFilmId(filmId);
-        return filmActorRepository.findFilmActorsById_FilmId(filmActorId);
+        return filmActorRepository.findFilmActorsById_FilmId(filmId);
     }
 
     public List<FilmActor> getFilmActorsAll(){
@@ -30,7 +30,7 @@ public class FilmActorService {
     public List<FilmActor> getFilmActorsByActorId(Integer actorId){
         FilmActorId filmActorId = new FilmActorId();
         filmActorId.setActorId(actorId);
-        return filmActorRepository.findFilmActorsById_ActorId(filmActorId);
+        return filmActorRepository.findFilmActorsById_ActorId(actorId);
     }
 
     public FilmActor saveFilmActor(FilmActor filmActor){
