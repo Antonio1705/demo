@@ -1,8 +1,8 @@
-package com.example.demo.ActorController;
+package com.example.filmDbProject.Controller;
 
 
-import com.example.demo.Entity.Category;
-import com.example.demo.Service.CategoryService;
+import com.example.filmDbProject.Entity.Category;
+import com.example.filmDbProject.Service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

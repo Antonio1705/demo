@@ -1,4 +1,4 @@
-package com.example.demo.Entity;
+package com.example.filmDbProject.Entity;
 
 
 import jakarta.persistence.*;
@@ -8,16 +8,15 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-@Data
-@AllArgsConstructor
 @NoArgsConstructor
-
+@AllArgsConstructor
+@Data
 @Entity
-@Table(name = "film_category")
-public class FilmCategory {
+@Table(name = "film_actor")
+public class FilmActor {
 
     @EmbeddedId
-    private FilmCategoryId id;
+    private FilmActorId id;
 
     @Column(name = "last_update")
     private LocalDate lastUpdate;

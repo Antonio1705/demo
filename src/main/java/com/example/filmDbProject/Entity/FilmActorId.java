@@ -1,5 +1,4 @@
-package com.example.demo.Entity;
-
+package com.example.filmDbProject.Entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -7,31 +6,31 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 
+@Embeddable
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Embeddable
-public class FilmCategoryId {
+public class FilmActorId implements Serializable {
+    @Column(name = "actor_id")
+    private Integer actorId;
 
     @Column(name = "film_id")
     private Integer filmId;
-
-    @Column(name = "category_id")
-    private Integer categoryId;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        FilmCategoryId that = (FilmCategoryId) o;
-        return Objects.equals(filmId, that.filmId) && Objects.equals(categoryId, that.categoryId);
+        FilmActorId that = (FilmActorId) o;
+        return Objects.equals(actorId, that.actorId) && Objects.equals(filmId, that.filmId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(filmId, categoryId);
+        return Objects.hash(actorId, filmId);
     }
 }

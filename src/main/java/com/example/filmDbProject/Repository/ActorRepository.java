@@ -1,7 +1,7 @@
-package com.example.demo.Repository;
+package com.example.filmDbProject.Repository;
 
 
-import com.example.demo.Entity.Actor;
+import com.example.filmDbProject.Entity.Actor;
 import org.springframework.data.repository.CrudRepository;
 
 

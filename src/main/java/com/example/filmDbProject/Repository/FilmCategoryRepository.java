@@ -1,7 +1,7 @@
-package com.example.demo.Repository;
+package com.example.filmDbProject.Repository;
 
-import com.example.demo.Entity.FilmCategory;
-import com.example.demo.Entity.FilmCategoryId;
+import com.example.filmDbProject.Entity.FilmCategory;
+import com.example.filmDbProject.Entity.FilmCategoryId;
 import jakarta.transaction.Transactional;
 import org.springframework.data.repository.CrudRepository;
 

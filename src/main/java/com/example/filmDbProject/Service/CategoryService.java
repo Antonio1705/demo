@@ -1,7 +1,7 @@
-package com.example.demo.Service;
+package com.example.filmDbProject.Service;
 
-import com.example.demo.Entity.Category;
-import com.example.demo.Repository.CategoryRepository;
+import com.example.filmDbProject.Entity.Category;
+import com.example.filmDbProject.Repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

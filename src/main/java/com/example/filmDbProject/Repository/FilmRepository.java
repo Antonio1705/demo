@@ -1,6 +1,6 @@
-package com.example.demo.Repository;
+package com.example.filmDbProject.Repository;
 
-import com.example.demo.Entity.Film;
+import com.example.filmDbProject.Entity.Film;
 import org.springframework.data.repository.CrudRepository;
 
 public interface FilmRepository extends CrudRepository<Film,Integer> {

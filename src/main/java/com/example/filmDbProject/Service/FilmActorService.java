@@ -1,8 +1,8 @@
-package com.example.demo.Service;
+package com.example.filmDbProject.Service;
 
-import com.example.demo.Entity.FilmActor;
-import com.example.demo.Entity.FilmActorId;
-import com.example.demo.Repository.FilmActorRepository;
+import com.example.filmDbProject.Entity.FilmActor;
+import com.example.filmDbProject.Entity.FilmActorId;
+import com.example.filmDbProject.Repository.FilmActorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
-package com.example.demo.Repository;
+package com.example.filmDbProject.Repository;
 
-import com.example.demo.Entity.Category;
+import com.example.filmDbProject.Entity.Category;
 import org.springframework.data.repository.CrudRepository;
 
 
