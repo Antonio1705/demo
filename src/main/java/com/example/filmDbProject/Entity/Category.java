@@ -1,12 +1,15 @@
 package com.example.filmDbProject.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,4 +28,11 @@ public class Category {
 
     @Column(name = "last_update")
     private LocalDate lastUpdate;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "categoryList")
+    List<Film> actorList = new ArrayList<>();
+
+
 }
+

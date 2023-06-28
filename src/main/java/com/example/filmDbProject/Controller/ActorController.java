@@ -1,11 +1,14 @@
 package com.example.filmDbProject.Controller;
 
 import com.example.filmDbProject.Entity.Actor;
+import com.example.filmDbProject.Entity.Film;
 import com.example.filmDbProject.Service.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/actors")
@@ -17,6 +20,13 @@ public class ActorController {
     @GetMapping("/{id}")
     public ResponseEntity<Actor> getActor(@PathVariable int id){
         return new ResponseEntity<>(actorService.getActor(id),HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/films")
+    public ResponseEntity<List<Film>> getActorFilms(@PathVariable int id){
+
+
+        return new ResponseEntity<>(actorService.getActor(id).getFilmList(),HttpStatus.OK);
     }
 
     @PostMapping

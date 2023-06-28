@@ -1,5 +1,6 @@
 package com.example.filmDbProject.Controller;
 
+import com.example.filmDbProject.Entity.Actor;
 import com.example.filmDbProject.Entity.Film;
 import com.example.filmDbProject.Service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,13 @@ public class FilmController {
     @GetMapping("/{id}")
     public ResponseEntity<Film> getFilm(@PathVariable int id){
         return new ResponseEntity<>(filmService.getFilm(id), HttpStatus.FOUND);
+    }
+
+    @GetMapping("/{id}/actors")
+    public ResponseEntity<List<Actor>> getFilmActors(@PathVariable int id){
+
+
+        return new ResponseEntity<>(filmService.getFilm(id).getActorList(), HttpStatus.FOUND);
     }
 
     @PostMapping

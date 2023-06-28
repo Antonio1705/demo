@@ -13,7 +13,9 @@ public class FilmService {
     FilmRepository filmRepository;
 
     public Film getFilm(int id) {
-        return filmRepository.findById(id).get();
+
+        Film film = filmRepository.findById(id).get();
+        return film;
     }
 
     public Film saveFilm(Film film){

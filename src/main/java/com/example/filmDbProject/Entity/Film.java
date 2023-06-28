@@ -1,5 +1,6 @@
 package com.example.filmDbProject.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -27,8 +30,6 @@ public class Film {
     @Column(name = "release_year")
     private String releaseYear;
 
-    @Column(name = "language_id")
-    private Integer languageId;
 
     @Column(name = "original_language_id")
     private Integer originalLanguageId;
@@ -50,5 +51,23 @@ public class Film {
 
     @Column(name = "last_update")
     private LocalDate lastUpdate;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "filmList")
+    List<Actor> actorList = new ArrayList<>();
+
+
+    @OneToOne
+    @JoinColumn(name = "language_id")
+    private Language language;
+
+
+    @ManyToMany
+    @JoinTable(
+            name = "film_category",
+            joinColumns = @JoinColumn(name = "film_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    List<Category> categoryList;
 
 }
