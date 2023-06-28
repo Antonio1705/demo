@@ -1,6 +1,7 @@
 package com.example.filmDbProject.Controller;
 
 import com.example.filmDbProject.Entity.Actor;
+import com.example.filmDbProject.Entity.ActorProjectionClass;
 import com.example.filmDbProject.Entity.Film;
 import com.example.filmDbProject.Service.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,8 @@ public class ActorController {
     ActorService actorService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Actor> getActor(@PathVariable int id){
-        return new ResponseEntity<>(actorService.getActor(id),HttpStatus.OK);
+    public ResponseEntity<ActorProjectionClass> getActor(@PathVariable int id){
+        return new ResponseEntity<>(new ActorProjectionClass(actorService.getActor(id)),HttpStatus.OK);
     }
 
     @GetMapping("/{id}/films")

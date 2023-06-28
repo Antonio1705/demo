@@ -1,6 +1,7 @@
 package com.example.filmDbProject.Service;
 
 import com.example.filmDbProject.Entity.Film;
+import com.example.filmDbProject.Entity.FilmProjection;
 import com.example.filmDbProject.Repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,14 +13,36 @@ public class FilmService {
     @Autowired
     FilmRepository filmRepository;
 
+
+
+
     public Film getFilm(int id) {
 
         Film film = filmRepository.findById(id).get();
+
         return film;
     }
 
-    public Film saveFilm(Film film){
-        return filmRepository.save(film);
+    public FilmProjection getFilmProjection(int id) {
+
+        Film film = filmRepository.findById(id).get();
+        FilmProjection filmProjection = filmRepository.findByTitle(film.getTitle()).get();
+        return filmProjection;
+    }
+
+    public FilmProjection getFilmByTitle(String title) {
+
+        FilmProjection film = filmRepository.findByTitle(title).get();
+
+        return film;
+    }
+
+
+
+    public FilmProjection saveFilm(Film film){
+        Film film2 =filmRepository.save(film);
+        FilmProjection filmProjection = filmRepository.findByTitle(film2.getTitle()).get();
+        return filmProjection;
     }
 
     public Film updateFilm(int idFilm, Film film){

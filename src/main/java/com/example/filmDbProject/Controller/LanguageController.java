@@ -2,6 +2,7 @@ package com.example.filmDbProject.Controller;
 
 
 import com.example.filmDbProject.Entity.Language;
+import com.example.filmDbProject.Entity.LanguageProjection;
 import com.example.filmDbProject.Service.LanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ public class LanguageController {
     LanguageService languageService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Language> getLanguage(@PathVariable Integer id){
+    public ResponseEntity<LanguageProjection> getLanguage(@PathVariable Integer id){
         return new ResponseEntity<>(languageService.getLanguageById(id), HttpStatus.FOUND);
     }
 
@@ -29,12 +30,12 @@ public class LanguageController {
     }
 
     @PostMapping
-    public ResponseEntity<Language> saveLanguages(@RequestBody Language language){
+    public ResponseEntity<LanguageProjection> saveLanguages(@RequestBody Language language){
         return new ResponseEntity<>(languageService.saveLanguage(language), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Language> updateLanguages(@RequestBody Language language, @PathVariable Integer id){
+    public ResponseEntity<LanguageProjection> updateLanguages(@RequestBody Language language, @PathVariable Integer id){
         return new ResponseEntity<>(languageService.updateLanguage(id,language), HttpStatus.FOUND);
     }
 
