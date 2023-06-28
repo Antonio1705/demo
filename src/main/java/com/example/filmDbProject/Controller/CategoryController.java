@@ -2,6 +2,7 @@ package com.example.filmDbProject.Controller;
 
 
 import com.example.filmDbProject.Entity.Category;
+import com.example.filmDbProject.Entity.CategoryProjection;
 import com.example.filmDbProject.Service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,8 +24,9 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Category> getCategoryById(@PathVariable Integer id){
-        return new ResponseEntity<>(categoryService.getCategory(id), HttpStatus.FOUND);
+    public ResponseEntity<CategoryProjection> getCategoryById(@PathVariable Integer id){
+        CategoryProjection categoryProjection = new CategoryProjection(categoryService.getCategory(id));
+        return new ResponseEntity<>(categoryProjection, HttpStatus.FOUND);
     }
 
     @PutMapping("/{id}")
@@ -39,8 +41,9 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<Category> saveCategoryById(@RequestBody Category category){
-        return new ResponseEntity<>(categoryService.saveCategory(category),HttpStatus.CREATED);
+    public ResponseEntity<CategoryProjection> saveCategoryById(@RequestBody Category category){
+        CategoryProjection categoryProjection = new CategoryProjection(categoryService.saveCategory(category));
+        return new ResponseEntity<>(categoryProjection,HttpStatus.CREATED);
     }
 
 }
