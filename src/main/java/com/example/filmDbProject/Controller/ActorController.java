@@ -25,8 +25,6 @@ public class ActorController {
 
     @GetMapping("/{id}/films")
     public ResponseEntity<List<Film>> getActorFilms(@PathVariable int id){
-
-
         return new ResponseEntity<>(actorService.getActor(id).getFilmList(),HttpStatus.OK);
     }
 
@@ -45,5 +43,4 @@ public class ActorController {
         actorService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 }

@@ -45,5 +45,4 @@ public class CategoryController {
         CategoryProjection categoryProjection = new CategoryProjection(categoryService.saveCategory(category));
         return new ResponseEntity<>(categoryProjection,HttpStatus.CREATED);
     }
-
 }

@@ -24,16 +24,12 @@ public class FilmController {
 
     @GetMapping("/{id}/actors")
     public ResponseEntity<List<Actor>> getFilmActors(@PathVariable int id){
-
-
         return new ResponseEntity<>(filmService.getFilm(id).getActorList(), HttpStatus.FOUND);
     }
 
     @GetMapping("/title/{title}")
     public ResponseEntity<FilmProjection> getFilmActors(@PathVariable String title){
-
         FilmProjection filmProjection = filmService.getFilmByTitle(title);
-
         ResponseEntity<FilmProjection> tResponseEntity = new ResponseEntity<>(filmProjection, HttpStatus.FOUND);
         return tResponseEntity;
     }

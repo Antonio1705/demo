@@ -4,8 +4,9 @@ package com.example.filmDbProject.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,7 +14,8 @@ import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "category")
 public class Category {
@@ -33,6 +35,4 @@ public class Category {
     @ManyToMany(mappedBy = "categoryList")
     List<Film> actorList = new ArrayList<>();
 
-
 }
-

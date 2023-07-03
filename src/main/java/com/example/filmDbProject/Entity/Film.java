@@ -19,7 +19,6 @@ import java.util.List;
 @Entity
 public class Film {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "film_id")
     private int filmId;
 
@@ -30,7 +29,6 @@ public class Film {
     @Column(name = "release_year")
     private String releaseYear;
 
-
     @Column(name = "original_language_id")
     private Integer originalLanguageId;
 
@@ -40,12 +38,10 @@ public class Film {
     @Column(name = "rental_rate")
     private double rentalRate;
 
-
     private int length;
 
     @Column(name = "replacement_cost")
     private double replacementCost;
-
 
     private String rating;
 
@@ -56,11 +52,9 @@ public class Film {
     @ManyToMany(mappedBy = "filmList")
     List<Actor> actorList = new ArrayList<>();
 
-
     @OneToOne
     @JoinColumn(name = "language_id")
     private Language language;
-
 
     @ManyToMany
     @JoinTable(
@@ -69,5 +63,4 @@ public class Film {
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     List<Category> categoryList;
-
 }

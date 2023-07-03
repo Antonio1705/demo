@@ -6,6 +6,7 @@ import com.example.filmDbProject.Repository.LanguageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LanguageService {
@@ -13,12 +14,19 @@ public class LanguageService {
     LanguageRepository languageRepository;
 
     public LanguageProjection getLanguageById(Integer id){
-        Language language =languageRepository.findById(id).get();
-        return languageRepository.findLanguageByName(language.getName()).get();
+        if (id == null){
+            return null;
+        }
+
+        Optional<Language> language =languageRepository.findById(id);
+        if (language.isPresent()){
+            Language languageGet = language.get();
+            return languageRepository.findLanguageByName(languageGet.getName()).get();
+        }
+        return null;
     }
 
     public List<Language> getLanguages(){
-
         return (List<Language>) languageRepository.findAll();
     }
 
@@ -27,18 +35,33 @@ public class LanguageService {
     }
 
     public LanguageProjection updateLanguage(Integer id, Language language){
-        Language languageFindById = languageRepository.findById(id).get();
+        if (id == null || language == null ){
+            return null;
+        }
 
-        languageFindById.setName(language.getName());
-        languageFindById.setLastUpdate(language.getLastUpdate());
-        languageRepository.save(languageFindById);
-        LanguageProjection languageProjection = languageRepository.findLanguageByName(languageFindById.getName()).get();
-        return languageProjection;
+        Optional<Language> languageFindById = languageRepository.findById(id);
+
+        if (languageFindById.isPresent()){
+            Language languageGet = languageFindById.get();
+            languageGet.setName(language.getName());
+            languageGet.setLastUpdate(language.getLastUpdate());
+            languageRepository.save(languageGet);
+
+            LanguageProjection languageProjection = languageRepository.findLanguageByName(languageGet.getName()).get();
+
+            return languageProjection;
+        }
+        return null;
     }
 
     public LanguageProjection saveLanguage(Language language){
+        if (language == null){
+            return null;
+        }
+
         Language languageSaved = languageRepository.save(language);
         LanguageProjection languageProjection = languageRepository.findLanguageByName(languageSaved.getName()).get();
+
         return languageProjection;
     }
 }
