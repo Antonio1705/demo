@@ -23,6 +23,16 @@ public class ActorController {
         return new ResponseEntity<>(new ActorProjectionClass(actorService.getActor(id)),HttpStatus.OK);
     }
 
+    @GetMapping("firstName/{name}")
+    public ResponseEntity<ActorProjectionClass> getActorByFirstName(@PathVariable String name){
+        return new ResponseEntity<>(new ActorProjectionClass(actorService.findByFirstName(name)),HttpStatus.OK);
+    }
+
+    @GetMapping("lastName/{name}")
+    public ResponseEntity<ActorProjectionClass> getActorByLastName(@PathVariable String name){
+        return new ResponseEntity<>(new ActorProjectionClass(actorService.findByLastName(name)),HttpStatus.OK);
+    }
+
     @GetMapping("/{id}/films")
     public ResponseEntity<List<Film>> getActorFilms(@PathVariable int id){
         return new ResponseEntity<>(actorService.getActor(id).getFilmList(),HttpStatus.OK);

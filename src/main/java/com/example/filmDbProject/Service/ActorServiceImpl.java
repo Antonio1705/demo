@@ -26,6 +26,34 @@ public class ActorServiceImpl implements ActorService{
     }
 
     @Override
+    public Actor findByFirstName(String firstName) {
+        if (firstName == null){
+            return null;
+        }
+
+        Optional<Actor> actor = actorRepository.findByFirstName(firstName);
+
+        if (actor.isPresent()){
+            return actor.get();
+        }
+        return null;
+    }
+
+    @Override
+    public Actor findByLastName(String lastName) {
+        if (lastName == null){
+            return null;
+        }
+
+        Optional<Actor> actor = actorRepository.findByFirstName(lastName);
+
+        if (actor.isPresent()){
+            return actor.get();
+        }
+        return null;
+    }
+
+    @Override
     public Actor saveActor(Actor actor) {
         if (actor == null){
             return null;
