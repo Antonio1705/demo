@@ -57,6 +57,14 @@ class CategoryServiceTest {
     }
 
     @Test
+    void saveCategory_newCategoryWithNullValue_saved() {
+        List<Film> filmList = new ArrayList<>();
+        Category categorySaved =categoryService.saveCategory(new Category(200,"Horor-Comedy", null,null));
+        Assertions.assertThat(categorySaved.getName()).isEqualTo(categoryService.getCategory(categorySaved.getCategoryId()).getName());
+        categoryService.deleteCategory(200);
+    }
+
+    @Test
     void saveCategory_null_null() {
         List<Film> filmList = new ArrayList<>();
         Category categorySaved =categoryService.saveCategory(null);
@@ -67,11 +75,12 @@ class CategoryServiceTest {
     void updateCategory_success() {
         List<Film> filmList = new ArrayList<>();
 
-        categoryService.saveCategory(new Category(2,"Horor-Comedy", LocalDate.now(),filmList));
-        Assertions.assertThat(categoryService.getCategory(2).getName()).isEqualTo("Horor-Comedy");
+        categoryService.saveCategory(new Category(222,"Horor-Comedy", LocalDate.now(),filmList));
+        Assertions.assertThat(categoryService.getCategory(222).getName()).isEqualTo("Horor-Comedy");
 
-        categoryService.updateCategory(2,new Category(2,"Horor", LocalDate.now(),filmList));
-        Assertions.assertThat(categoryService.getCategory(2).getName()).isEqualTo("Horor");
+        categoryService.updateCategory(222,new Category(222,"Horor", LocalDate.now(),filmList));
+        Assertions.assertThat(categoryService.getCategory(222).getName()).isEqualTo("Horor");
+        categoryService.deleteCategory(222);
     }
 
     @Test
@@ -98,14 +107,18 @@ class CategoryServiceTest {
 
     @Test
     void deleteCategory_createNewCategoryAndDelete_success() {
-
+        // I have the ability to remove a category, but only if it is not being utilized as a foreign key in any other table.
+        Category category = categoryService.getCategory(200);
+        if (category != null){
+            categoryService.deleteCategory(200);
+        }
 
         List<Film> filmList = new ArrayList<>();
 
-        categoryService.saveCategory(new Category(2000,"France-Movies", LocalDate.now(),filmList));
+        categoryService.saveCategory(new Category(200,"France-Movies", LocalDate.now(),filmList));
 
-        categoryService.deleteCategory(2000);
-        Assertions.assertThat(categoryService.getCategory(2000)).isNull();
+        categoryService.deleteCategory(200);
+        Assertions.assertThat(categoryService.getCategory(200)).isNull();
     }
 
 }

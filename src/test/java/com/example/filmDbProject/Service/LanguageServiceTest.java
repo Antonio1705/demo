@@ -119,8 +119,6 @@ class LanguageServiceTest {
 
         Assertions.assertThat(getLanguageById243).isNotNull();
         Assertions.assertThat(getLanguageById243.getName()).isEqualTo("Croatian");
-
-
     }
 
     @Test

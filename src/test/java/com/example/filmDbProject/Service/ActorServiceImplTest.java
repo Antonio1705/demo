@@ -15,6 +15,7 @@ import java.util.List;
 class ActorServiceImplTest {
 
 
+    public static final String AAA = "aaa";
     @Autowired
     ActorServiceImpl actorService;
 
@@ -58,14 +59,15 @@ class ActorServiceImplTest {
 
     @Test
     void saveActor_newActor_success() {
+
         List<Film> filmList = new ArrayList<>();
 
-        Actor actor = new Actor(1,"aaa","bbb",LocalDate.now(),filmList);
+        Actor actor = new Actor(10001, AAA,"bbb",LocalDate.now(),filmList);
         Actor actorSaved =actorService.saveActor(actor);
 
         Assertions.assertThat(actorSaved).isNotNull();
-        Assertions.assertThat(actorSaved.getFirstName()).isEqualTo("aaa");
-        Assertions.assertThat(actorSaved.getFilmList()).isEmpty();
+        Assertions.assertThat(actorSaved.getFirstName()).isEqualTo(AAA);
+        actorService.delete(10001);
     }
 
     @Test
@@ -79,13 +81,32 @@ class ActorServiceImplTest {
 
     @Test
     void delete_actor_success() {
+        List<Film> filmList = new ArrayList<>();
+
+        Actor actor = new Actor(1011,"bbbbb","yyyyy",LocalDate.now(),filmList);
+        Actor saveActor = actorService.saveActor(actor);
+
+        Actor actor1 = actorService.getActor(1011);
+
+        Assertions.assertThat(actor1).isNotNull();
+
+        actorService.delete(1011);
+
+        Actor getDeletedActor = actorService.getActor(1011);
+
+
+        Assertions.assertThat(getDeletedActor).isNull();
+    }
+
+    @Test
+    void delete_actorIdDontExist_success() {
         int actorListSize = actorService.getActors().size();
 
-        actorService.delete(actorListSize);
+        actorService.delete(1000000000);
 
         int actorCurrentListSize = actorService.getActors().size();
 
-        Assertions.assertThat(actorListSize).isGreaterThan(actorCurrentListSize);
+        Assertions.assertThat(actorListSize).isEqualTo(actorCurrentListSize);
     }
 
 
@@ -101,6 +122,8 @@ class ActorServiceImplTest {
         actorService.updateActor(actorSave.getActorId(),new Actor(1,"Antonio","Henson",LocalDate.now(),filmList));
 
         Assertions.assertThat(actorService.getActor(actorSave.getActorId()).getLastName()).isEqualTo("Henson");
+
+        actorService.delete(1);
     }
 
     @Test
@@ -112,6 +135,7 @@ class ActorServiceImplTest {
     @Test
     void updateActor_idNotExist_null() {
         List<Film> filmList = new ArrayList<>();
-        Assertions.assertThat(actorService.updateActor(100000,new Actor(1,"Antonio","Banderas",LocalDate.now(),filmList))).isEqualTo(null);
+        Assertions.assertThat(actorService.updateActor(100000,new Actor(1,"Antonio","Banderas",LocalDate.now(),filmList)))
+                .isEqualTo(null);
     }
 }
