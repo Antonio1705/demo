@@ -45,7 +45,7 @@ public class ActorServiceImpl implements ActorService{
             return null;
         }
 
-        Optional<Actor> actor = actorRepository.findByFirstName(lastName);
+        Optional<Actor> actor = actorRepository.findByLastName(lastName);
 
         if (actor.isPresent()){
             return actor.get();
