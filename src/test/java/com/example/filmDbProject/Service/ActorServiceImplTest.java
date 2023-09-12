@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +61,7 @@ class ActorServiceImplTest {
 
         List<Film> filmList = new ArrayList<>();
 
-        Actor actor = new Actor(10001, AAA,"bbb",LocalDate.now(),filmList);
+        Actor actor = new Actor(10001, AAA,"bbb","2222",filmList);
         Actor actorSaved =actorService.saveActor(actor);
 
         Assertions.assertThat(actorSaved).isNotNull();
@@ -83,7 +82,7 @@ class ActorServiceImplTest {
     void delete_actor_success() {
         List<Film> filmList = new ArrayList<>();
 
-        Actor actor = new Actor(1011,"bbbbb","yyyyy",LocalDate.now(),filmList);
+        Actor actor = new Actor(1011,"bbbbb","yyyyy","2222",filmList);
         Actor saveActor = actorService.saveActor(actor);
 
         Actor actor1 = actorService.getActor(1011);
@@ -116,10 +115,10 @@ class ActorServiceImplTest {
 
         List<Film> filmList = new ArrayList<>();
 
-        Actor actor = new Actor(1,"Antonio","Banderas",LocalDate.now(),filmList);
+        Actor actor = new Actor(1,"Antonio","Banderas","2222",filmList);
         Actor actorSave = actorService.saveActor(actor);
 
-        actorService.updateActor(actorSave.getActorId(),new Actor(1,"Antonio","Henson",LocalDate.now(),filmList));
+        actorService.updateActor(actorSave.getActorId(),new Actor(1,"Antonio","Henson","2222",filmList));
 
         Assertions.assertThat(actorService.getActor(actorSave.getActorId()).getLastName()).isEqualTo("Henson");
 
@@ -135,7 +134,7 @@ class ActorServiceImplTest {
     @Test
     void updateActor_idNotExist_null() {
         List<Film> filmList = new ArrayList<>();
-        Assertions.assertThat(actorService.updateActor(100000,new Actor(1,"Antonio","Banderas",LocalDate.now(),filmList)))
+        Assertions.assertThat(actorService.updateActor(100000,new Actor(1,"Antonio","Banderas","2222",filmList)))
                 .isEqualTo(null);
     }
 }

@@ -24,19 +24,26 @@ public class ActorController {
     }
 
     @GetMapping("firstName/{name}")
-    public ResponseEntity<ActorProjectionClass> getActorByFirstName(@PathVariable String name){
-        return new ResponseEntity<>(new ActorProjectionClass(actorService.findByFirstName(name)),HttpStatus.OK);
+    public ResponseEntity<List<Actor>> getActorByFirstName(@PathVariable String name){
+        return new ResponseEntity<>(actorService.findByFirstName(name),HttpStatus.OK);
     }
 
     @GetMapping("lastName/{name}")
-    public ResponseEntity<ActorProjectionClass> getActorByLastName(@PathVariable String name){
-        return new ResponseEntity<>(new ActorProjectionClass(actorService.findByLastName(name)),HttpStatus.OK);
+    public ResponseEntity<List<Actor>> getActorByLastName(@PathVariable String name){
+        return new ResponseEntity<>(actorService.findByLastName(name),HttpStatus.OK);
     }
 
-    @GetMapping("/{id}/films")
+    @GetMapping("id/{id}/films")
     public ResponseEntity<List<Film>> getActorFilms(@PathVariable int id){
         return new ResponseEntity<>(actorService.getActor(id).getFilmList(),HttpStatus.OK);
     }
+
+    @GetMapping("firstname/{firstname}/lastname/{lastname}/films")
+    public ResponseEntity<List<Film>> getActorFilmsByFirstAndLastName(@PathVariable String firstname, @PathVariable String lastname){
+        return new ResponseEntity<>(actorService.getActorByFirstAndLastName(firstname,lastname).getFilmList(),HttpStatus.OK);
+    }
+
+
 
     @PostMapping
     public ResponseEntity<Actor> saveActor(@RequestBody Actor actor){

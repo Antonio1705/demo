@@ -3,9 +3,11 @@ package com.example.filmDbProject.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +20,7 @@ import java.util.List;
 @Table(name = "actor")
 public class Actor {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "actor_id")
     private Integer actorId;
     @Column(name = "first_name", nullable = false)
@@ -25,7 +28,7 @@ public class Actor {
     @Column(name = "last_name", nullable = false)
     private String lastName;
     @Column(name = "last_update", nullable = false)
-    private LocalDate lastUpdate;
+    private String lastUpdate;
 
     @ManyToMany
     @JoinTable(

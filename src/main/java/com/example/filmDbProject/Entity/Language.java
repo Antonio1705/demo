@@ -1,12 +1,9 @@
 package com.example.filmDbProject.Entity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -16,6 +13,7 @@ import java.time.LocalDate;
 public class Language {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "language_id")
     private Integer idLanguage;
 
@@ -23,6 +21,6 @@ public class Language {
     private String name;
 
     @Column(name = "last_update")
-    private LocalDate lastUpdate;
+    private String lastUpdate;
 
 }

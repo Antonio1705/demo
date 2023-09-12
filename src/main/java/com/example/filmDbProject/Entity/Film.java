@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +18,9 @@ import java.util.List;
 @Entity
 public class Film {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "film_id")
-    private int filmId;
+    private Integer filmId ;
 
     private String title;
 
@@ -30,31 +30,35 @@ public class Film {
     private String releaseYear;
 
     @Column(name = "original_language_id")
-    private Integer originalLanguageId;
+    private Integer originalLanguageId = 1;
 
     @Column(name = "rental_duration")
-    private Integer rentalDuration;
+    private Integer rentalDuration = 2;
 
     @Column(name = "rental_rate")
-    private double rentalRate;
+    private double rentalRate = 2.2;
 
-    private int length;
+    private int length = 2;
 
     @Column(name = "replacement_cost")
-    private double replacementCost;
+    private double replacementCost = 4.4;
 
-    private String rating;
+    private String rating = "2";
 
     @Column(name = "last_update")
-    private LocalDate lastUpdate;
+    private String lastUpdate = "2222";
 
     @JsonIgnore
     @ManyToMany(mappedBy = "filmList")
     List<Actor> actorList = new ArrayList<>();
 
+    public void setFilmId(int filmId) {
+        this.filmId = filmId;
+    }
+
     @OneToOne
     @JoinColumn(name = "language_id")
-    private Language language;
+    private Language language = new Language(1,"english","2222");
 
     @ManyToMany
     @JoinTable(
@@ -62,5 +66,8 @@ public class Film {
             joinColumns = @JoinColumn(name = "film_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
-    List<Category> categoryList;
+    List<Category> categoryList = new ArrayList<>();
 }
+
+
+

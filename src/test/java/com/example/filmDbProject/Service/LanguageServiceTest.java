@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @SpringBootTest
@@ -56,7 +55,7 @@ class LanguageServiceTest {
             languageService.deleteLanguage(255);
         }
 
-        Language language = new Language(255,"South Korean", LocalDate.now());
+        Language language = new Language(255,"South Korean", "2222");
 
         languageService.saveLanguage(language);
 
@@ -80,7 +79,7 @@ class LanguageServiceTest {
             languageService.deleteLanguage(244);
         }
 
-        Language language = new Language(244,"Turkish", LocalDate.now());
+        Language language = new Language(244,"Turkish", "2222");
         languageService.saveLanguage(language);
 
         LanguageProjection languageGetById = languageService.getLanguageById(244);
@@ -102,7 +101,7 @@ class LanguageServiceTest {
             languageService.deleteLanguage(243);
         }
 
-        Language language = new Language(243,"Farsi", LocalDate.now());
+        Language language = new Language(243,"Farsi", "2222");
         languageService.saveLanguage(language);
 
         LanguageProjection languageGetById = languageService.getLanguageById(243);
@@ -111,7 +110,7 @@ class LanguageServiceTest {
         Assertions.assertThat(languageGetById.getName()).isEqualTo("Farsi");
 
 
-        Language languageNew = new Language(243,"Croatian", LocalDate.now());
+        Language languageNew = new Language(243,"Croatian", "2222");
         languageService.updateLanguage(243,languageNew);
 
 
@@ -131,7 +130,7 @@ class LanguageServiceTest {
 
     @Test
     void updateLanguage_idNotExist_null() {
-        Language languageNew = new Language(222,"Nepali", LocalDate.now());
+        Language languageNew = new Language(222,"Nepali", "2222");
         LanguageProjection languageGetById = languageService.updateLanguage(222,languageNew);
 
         Assertions.assertThat(languageGetById).isNull();

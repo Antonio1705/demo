@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,8 +92,8 @@ class FilmServiceTest {
         List<Actor> actors = new ArrayList<>();
         List<Category> categoryList = new ArrayList<>();
 
-        Film film = new Film(1500,"Black List",null,null,1,3,4,4,2,"A",
-                LocalDate.now(),actors,new Language(6,"Roman",LocalDate.now()),categoryList);
+        Film film = new Film(1200,"Black List",null,null,1,3,4,4,2,"A",
+                "2222",actors,new Language(6,"Roman","2222"),categoryList);
 
 
         Assertions.assertThat(filmService.saveFilm(film)).isNotNull();
@@ -118,13 +117,13 @@ class FilmServiceTest {
         List<Actor> actors = new ArrayList<>();
         List<Category> categoryList = new ArrayList<>();
         Film film = new Film(1510,"TomAndJarry",null,null,1,3,4,4,2,"A",
-                LocalDate.now(),actors,new Language(6,"Roman",LocalDate.now()),categoryList);
+                "2222",actors,new Language(6,"Roman","2222"),categoryList);
         FilmProjection savedFilm = filmService.saveFilm(film);
 
         Assertions.assertThat(filmService.getFilm(1510).getTitle()).isEqualTo("TomAndJarry");
 
         Film filmNew = new Film(1511,"Tom and Jarry",null,null,1,3,4,4,2,"A",
-                LocalDate.now(),actors,new Language(6,"Roman",LocalDate.now()),categoryList);
+                "2222",actors,new Language(6,"Roman","2222"),categoryList);
         filmService.updateFilm(1510,filmNew);
         Assertions.assertThat(filmService.getFilm(1510).getTitle()).isEqualTo("Tom and Jarry");
         filmService.deleteFilm(1510);
@@ -135,7 +134,7 @@ class FilmServiceTest {
         List<Actor> actors = new ArrayList<>();
         List<Category> categoryList = new ArrayList<>();
         Film film = new Film(100000,"TomAndJarry",null,null,1,3,4,4,2,
-                "A", LocalDate.now(),actors,new Language(6,"Roman",LocalDate.now()),categoryList);
+                "A", "2222",actors,new Language(6,"Roman","2222"),categoryList);
 
         Film filmUpdated = filmService.updateFilm(10000000,film);
         Assertions.assertThat(filmUpdated).isNull();
@@ -147,7 +146,7 @@ class FilmServiceTest {
         List<Actor> actors = new ArrayList<>();
         List<Category> categoryList = new ArrayList<>();
         Film film = new Film(100000,"TomAndJarry",null,null,1,3,4,4,2,"A",
-                LocalDate.now(),actors,new Language(6,"Roman",LocalDate.now()),categoryList);
+                "2222",actors,new Language(6,"Roman","2222"),categoryList);
 
         Film filmUpdated = filmService.updateFilm(null,film);
         Assertions.assertThat(filmUpdated).isNull();
@@ -164,7 +163,7 @@ class FilmServiceTest {
 
         List<Actor> actors = new ArrayList<>();
         List<Category> categoryList = new ArrayList<>();
-        Film film = new Film(1302,"Copernicus",null,null,1,3,4,4,2,"A", LocalDate.now(),actors,new Language(6,"Roman",LocalDate.now()),categoryList);
+        Film film = new Film(1302,"Copernicus",null,"2222",1,3,4,4,2,"A", "2222",actors,new Language(6,"Roman","2222"),categoryList);
 
         FilmProjection filmSave = filmService.saveFilm(film);
 
