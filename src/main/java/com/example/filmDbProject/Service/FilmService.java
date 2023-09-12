@@ -144,6 +144,18 @@ public class FilmService {
         return null;
     }
 
+    public List<Film> findFilmByReleaseYear(String releaseYear){
+
+        List<Film> filmList = filmRepository.findFilmByReleaseYear(releaseYear).get();
+
+        return filmList;
+    }
+
+    public List<Film> findFilmByCategoryName(String categoryName){
+        List<Film> filmList =filmRepository.findFilmByCategoryList_name(categoryName);
+        return filmList;
+    }
+
     /* Das hier geht nicht weil film find By Title ist eine projection
     public Film addActorToFilmFindedByName(String title,String actorFirstName, String actorLastName){
         Optional<FilmProjection> film = filmRepository.findByTitle(title);

@@ -76,4 +76,20 @@ public class FilmController {
         Film film = filmService.addActorToFilmFindedById(filmId,firstname,lastname);
         return new ResponseEntity<>(film,HttpStatus.OK);
     }
+
+    @GetMapping("/releaseyear/{releaseYear}")
+    public ResponseEntity<List<Film>> getFilmByReleaseYear(@PathVariable String releaseYear){
+        List<Film> filmList = filmService.findFilmByReleaseYear(releaseYear);
+
+        return new ResponseEntity<>(filmList,HttpStatus.OK);
+
+    }
+
+    @GetMapping("/category/{category}")
+    public ResponseEntity<List<Film>> getFilmsByCategory(@PathVariable String category){
+        List<Film> filmList = filmService.findFilmByCategoryName(category);
+
+        return new ResponseEntity<>(filmList,HttpStatus.OK);
+    }
+
 }

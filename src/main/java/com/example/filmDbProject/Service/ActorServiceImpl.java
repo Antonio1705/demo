@@ -43,7 +43,6 @@ public class ActorServiceImpl implements ActorService{
 
         List<Actor> actorList = actorRepository.findByFirstName(firstName);
 
-
         return actorList;
     }
 
